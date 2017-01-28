@@ -1,12 +1,26 @@
 'use strict';
 
-var TIME_OUT  = 100000 // General wait (ms)
-var BASE_URL  = 'www.google.com'
-// HTML reporter
-var customReporter 		= require('./reporter/main.js');
-var reportPath			= "C:/exampleDirectory/"
-var downloadPath		= "C:\\example\\folder\\structure\\"
+// custom reporter
+var customReporter 		= require('./reporter/main.js');	
 
+var TIME_OUT  = 100000 // General wait (ms)					// required [todo fix bug]
+var BASE_URL  = 'http://eloquentjavascript.net/'			// required
+
+var reportPath			= "C:/exampleDirectory/"			// required
+var downloadPath		= "C:/example/folder/structure/"	// optional
+var applicationName     = "test2"							// required
+var generateHTML        = true;								// optional
+var generateJSON        = true;								// optional
+
+
+
+var reporterConfig ={
+			application_name   : applicationName,
+			application_url    : BASE_URL,
+			simple_html_report : generateHTML,
+			json_report		   : generateJSON
+		};
+		
 exports.config = {
 	framework: 'jasmine',
 	seleniumAddress: 'http://localhost:4444/wd/hub',
@@ -25,6 +39,7 @@ exports.config = {
 				// Set download path and avoid prompting for download even though
 				// this is already the default on Chrome but for completeness
 				// even though this does not do what we want right now...
+				// TODO next version [auto download to attachment folder]
 				prefs: {
 					'download':
 					 {
@@ -35,12 +50,6 @@ exports.config = {
 	},
 	
 	onPrepare: function() {
-
-/*
-*		Fixtures test modules
-*/
-		global.robotFixture 				       = require('./fixtures/tests/robotFixture.js').robotFixture;
-
 /*
 *		Global shortcut refferences
 */
@@ -57,14 +66,10 @@ exports.config = {
 /*
 *			Reporting
 */
-
+		// stop Synchronization
 		browser.ignoreSynchronization = true;
 		// add customer reporter
-		jasmine.getEnv().addReporter(new customReporter({
-			application_name   : "RobotJsHelperModule TestDUMMY",
-			application_url    : BASE_URL,
-			simple_html_report : true
-		}));
+		jasmine.getEnv().addReporter(new customReporter(reporterConfig));
     }, // ends on prepare 
 		jasmineNodeOpts: {
 		// Stop default dot reporter from printing

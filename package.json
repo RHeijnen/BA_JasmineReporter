@@ -1,0 +1,23 @@
+{
+  "name": "fluidreporter",
+  "version": "0.0.9",
+  "description": "custom jasmine repoter",
+  "main": "exampleConf.js",
+  "dependencies": {
+    "promised-io": "^0.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RHeijnen/BA_JasmineReporter.git"
+  },
+  "author": "Rene Heijnen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RHeijnen/BA_JasmineReporter/issues"
+  },
+  "homepage": "https://github.com/RHeijnen/BA_JasmineReporter#readme"
+}
