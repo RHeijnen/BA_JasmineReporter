@@ -3,11 +3,9 @@ module.exports             = myReporter;
 var simpleReport           = require('./simpleReport.js');
 var jsonReport             = require('./jsonReport.js');
 var fileStructureLogic     = require('./fileStructureLogic.js');
-var angularReport          = require('./angularReport.js');
 
 var fs                     = require("../node_modules/promised-io/fs");
 var q                      = require('../node_modules/promised-io/promise');
-
 
 var date 		           = new Date();
 var imageIncrement         = 0;
@@ -101,7 +99,7 @@ function myReporter(_PARAMETER) {
     reportObject.Application_Name = _PARAMETER.application_name;
     reportObject.Application_URL  = _PARAMETER.application_url;
     htmlReport                    = _PARAMETER.simple_html_report;
-    generateJson                    = _PARAMETER.json_report;
+    generateJson                  = _PARAMETER.json_report;
 
 
     var tempSuiteName             = ""; 
@@ -170,13 +168,13 @@ function myReporter(_PARAMETER) {
         // checks howmuch time passed since the spec started
         var elapsedTime = new Date() - timer;
         // increment screenshot name variable
-        var screenshotFolder = global.reportPath+reportObject.Application_Name+"/_Screenshots/".replace(" ", "_");        
+        var screenshotFolder = global.reportPath+"/_Reports/"+reportObject.Application_Name+"/_Screenshots/".replace(" ", "_");        
         var incrementedName = screenshotFolder+ "/"+reportObject.Application_Name+'screenshot';
 
         // clean up
         incrementedName = incrementedName.replace(" ", "_");
         incrementedName = incrementedName+imageIncrement+'.png'
-        var jsonReference = incrementedName.replace("C:/xampp/htdocs/",".") 
+        var jsonReference = incrementedName.replace("C:/xampp/htdocs/new",".") 
         //console.log(jsonReference);
         
 
@@ -273,11 +271,9 @@ function myReporter(_PARAMETER) {
         var totalpercentage = getPercentage(reportObject.Total_Expectations,reportObject.Total_Expectations_Passed)
         reportObject.Total_Expectations_Percentage = totalpercentage
         // write Json file
-        if (generateJson)writeJson(global.reportPath+reportObject.Application_Name+"/"+reportObject.Application_Name,reportObject)
+        if (generateJson)writeJson(global.reportPath+"_Reports/"+reportObject.Application_Name+"/"+reportObject.Application_Name,reportObject)
         // write HTML Report
         if (htmlReport)simpleReport.writeReport(reportObject.Application_Name,reportObject);
-        // update angular report
-        //angularReport.writeAngularControler();
     }
     return this;
 }

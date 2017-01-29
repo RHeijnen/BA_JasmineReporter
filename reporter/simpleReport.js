@@ -117,7 +117,7 @@ module.exports      = {
 
 
     }
-	fs.writeFile(global.reportPath+_FILENAME+"/"+_FILENAME+"-htmlReport.html", content, function (err) {			// write file 
+	fs.writeFile(global.reportPath+"/_Reports/"+_FILENAME+"/"+_FILENAME+"-htmlReport.html", content, function (err) {			// write file 
 		if (err) return console.log(err);
 	});
   }

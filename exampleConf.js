@@ -6,9 +6,9 @@ var customReporter 		= require('./reporter/main.js');
 var TIME_OUT  = 100000 // General wait (ms)					// required [todo fix bug]
 var BASE_URL  = 'http://eloquentjavascript.net/'			// required
 
-var reportPath			= "C:/exampleDirectory/"			// required
-var downloadPath		= "C:/example/folder/structure/"	// optional
-var applicationName     = "test2"							// required
+var reportPath			= "C:/exampleDirectory/"			// required for reporting
+var downloadPath		= "C:/example/folder/structure/"	// optional for download module
+var applicationName     = "testFiles"							// required for reporting
 var generateHTML        = true;								// optional
 var generateJSON        = true;								// optional
 
@@ -18,9 +18,9 @@ var reporterConfig ={
 			application_name   : applicationName,
 			application_url    : BASE_URL,
 			simple_html_report : generateHTML,
-			json_report		   : generateJSON
+			json_report		   : generateJSON,
 		};
-		
+
 exports.config = {
 	framework: 'jasmine',
 	seleniumAddress: 'http://localhost:4444/wd/hub',
@@ -56,6 +56,7 @@ exports.config = {
 		global.baseUrl 				= BASE_URL;
 		global.downloadPath			= downloadPath;
 		global.reportPath			= reportPath;
+		global.debug				= false;
 
 /*
 *		Holds current URL for reporting   [[TODO  Replace functionality]]

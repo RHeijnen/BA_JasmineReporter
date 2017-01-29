@@ -15,26 +15,31 @@ module.exports      = {
       if(global.debug)console.log("global.reportPath does not exist, creating it")
       fs.mkdirSync(global.reportPath);
     };
-    if(!fs.existsSync(global.reportPath+_FILENAME)){ 
-      if(global.debug)console.log("global.reportPath  exists, creating project folder: "+_FILENAME)
-      fs.mkdirSync(global.reportPath+_FILENAME);
+    if(!fs.existsSync(global.reportPath+"/_Reports/")){
+      if(global.debug)console.log("   -creating sub folder: _Reports")
+      fs.mkdirSync(global.reportPath+"/_Reports/");
+    };
+    if(!fs.existsSync(global.reportPath+"/_Reports/"+_FILENAME)){ 
+      if(global.debug)console.log("_Reports  exists, creating project folder: "+_FILENAME)
+      fs.mkdirSync(global.reportPath+"/_Reports/"+_FILENAME);
     }else{
       if(global.debug)console.log("project folder exists, deleting it. "+_FILENAME)
-      deleteFolderRecursive(global.reportPath+_FILENAME)
-      if(!fs.existsSync(global.reportPath+_FILENAME)){ 
+      deleteFolderRecursive(global.reportPath+"/_Reports/"+_FILENAME)
+      if(!fs.existsSync(global.reportPath+"/_Reports/"+_FILENAME)){ 
         if(global.debug)console.log("recursive deletion done, creating project folder: "+_FILENAME)
-        fs.mkdirSync(global.reportPath+_FILENAME);
+        fs.mkdirSync(global.reportPath+"/_Reports/"+_FILENAME);
       };
     };
-    if(!fs.existsSync(global.reportPath+_FILENAME+"/_Screenshots/")){ 
+    if(!fs.existsSync(global.reportPath+"/_Reports/"+_FILENAME+"/_Screenshots/")){ 
       if(global.debug)console.log("   -creating sub folder: _Screenshots")
-      fs.mkdirSync(global.reportPath+_FILENAME+"/_Screenshots/");
+      fs.mkdirSync(global.reportPath+"/_Reports/"+_FILENAME+"/_Screenshots/");
     };
-    if(!fs.existsSync(global.reportPath+_FILENAME+"/_Attachments/")){ 
+    if(!fs.existsSync(global.reportPath+"/_Reports/"+_FILENAME+"/_Attachments/")){ 
       if(global.debug)console.log("   -creating sub folder: _Attachments")
-      fs.mkdirSync(global.reportPath+_FILENAME+"/_Attachments/");
+      fs.mkdirSync(global.reportPath+"/_Reports/"+_FILENAME+"/_Attachments/");
     };
     if(global.debug)console.log('===== /File Structure=======');
+
 
 
      /* 
